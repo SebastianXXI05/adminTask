@@ -23,7 +23,7 @@ class Task extends Model
     if ($validator->fails()) {
 			$errors = $validator->errors();
 
-			return response()->json(['error' => $errors], 400);
+			return response()->json(['success' => false, 'error' => $errors], 400);
 		}
 
     return null;

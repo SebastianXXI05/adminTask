@@ -16,6 +16,10 @@ class TaskController extends Controller
 		return response()->json(['success' => true, 'data' => Task::all()]);
 	}
 
+	public function show($id) {
+		return response()->json(['success' => true, 'data' => Task::find($id)]);
+	}
+
 	public function store(Request $request)
 	{
 		if (Task::validateData($request->all())??false) {

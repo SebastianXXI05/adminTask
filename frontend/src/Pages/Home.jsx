@@ -1,6 +1,10 @@
+import { useLoaderData } from 'react-router-dom'
 
+export default function Home() {
+  const { tasks } = useLoaderData()
 
-function Home() {
+  console.log(tasks)
+
   return (
     <div className='w-11/12 mx-auto'>
       <h1 className='font-bold text-center text-3xl mb-8'>My Tasks</h1>
@@ -19,4 +23,10 @@ function Home() {
   )
 }
 
-export default Home
+export async function loaderHome() {
+  const url = 'https://admintask-backend-production.up.railway.app/api/task'
+  const res = await fetch(url)
+  const tasks = await res.json()
+
+  return { tasks }
+}

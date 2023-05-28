@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, Link } from 'react-router-dom'
 
 export default function Home() {
   const { tasks } = useLoaderData()
@@ -7,8 +7,16 @@ export default function Home() {
 
   return (
     <div className='w-11/12 mx-auto'>
-      <h1 className='font-bold text-center text-3xl mb-8'>My Tasks</h1>
+      <h1 className='font-bold text-center text-3xl mb-16'>My Tasks</h1>
 
+      <div className='flex justify-center mb-2'>
+        <Link 
+          to='/create'
+          className='bg-green-500 py-2 px-4 rounded text-white'
+        >
+          Create new task
+        </Link>
+      </div>
       <main className='border-2 border-gray-400 h-96 rounded p-4'>
         <div className='flex justify-center border-b border-gray-400 pb-2 mb-4'>
           <input 

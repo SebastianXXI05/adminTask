@@ -1,9 +1,12 @@
-import { useLoaderData, Link } from 'react-router-dom'
+import { useLoaderData, Link, useLocation } from 'react-router-dom'
 
 export default function Home() {
   const { tasks } = useLoaderData()
+  const location = useLocation()
+  const message = location.state?.message ?? 'null'
 
   console.log(tasks)
+  console.log(message)
 
   return (
     <div className='w-11/12 mx-auto'>

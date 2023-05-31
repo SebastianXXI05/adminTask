@@ -1,7 +1,10 @@
 import { Formik, Form, Field, } from 'formik'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 export default () => {
+  const [ formError, setFormError ] = useState(false)
+
   const navigate = useNavigate() 
 
   async function handleSubmit(values) {
@@ -19,6 +22,9 @@ export default () => {
 
     if (res.ok) {
       navigate('/', {state: { message: 'success' }})
+    }
+    else {
+      setFormError(true)
     }
   }
 
@@ -38,6 +44,7 @@ export default () => {
         <Form
           className='border-2 border-gray-400 rounded px-4 py-8 mb-4 flex flex-col'
         >
+          {formError ? <h6 className='text-red-500 mb-2'>Invalid content</h6> : null}
           <label className='mb-4' htmlFor="title">Title</label>
           <Field
             type="text" name="title"

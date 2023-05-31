@@ -1,4 +1,5 @@
 import { useLoaderData, Link, useLocation } from 'react-router-dom'
+import Task from '../components/Task'
 
 export default function Home() {
   const { tasks } = useLoaderData()
@@ -24,11 +25,22 @@ export default function Home() {
         <div className='flex justify-center border-b border-gray-400 pb-2 mb-4'>
           <input 
           className="border border-gray-400 rounded p-1 focus-visible:
-          outline-none focus-visible:border-sky-400" 
+          outline-none focus-visible:border-sky-500 pr-9" 
 
           type="text" 
           placeholder="Search by title" />
         </div>
+        <section className='overflow-y-scroll h-72'>
+          {
+            tasks.data.map(task => {
+              return (
+                <article key={task.id}>
+                  <Task id={task.id} title={task.title} month={task.month} />
+                </article>
+              )
+            })
+          }
+        </section>
       </main>
     </div>
   )

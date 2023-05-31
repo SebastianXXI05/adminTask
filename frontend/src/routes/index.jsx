@@ -1,11 +1,12 @@
-import { createHashRouter } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 
 import IndexLayout from '../layouts/IndexLayout'
 import NotFound from '../Pages/NotFound'
 import Home, { loaderHome } from '../Pages/Home'
 import Create from '../Pages/Create'
+import Update, { loaderUpdate } from '../Pages/Update'
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: <IndexLayout />,
@@ -19,6 +20,11 @@ const router = createHashRouter([
       {
         path: '/create',
         element: <Create />
+      },
+      {
+        path: '/update/:id',
+        element: <Update />,
+        loader: loaderUpdate
       }
     ]
   }

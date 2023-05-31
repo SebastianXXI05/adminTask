@@ -22,7 +22,7 @@ export default ({ id, title }) => {
       <h3 className="mr-4">{ title }</h3>
       <div>
         <button className="px-4 py-2 bg-sky-500 rounded mr-3 hover:bg-sky-700">
-          <Link to=''>
+          <Link to={`/update/${id}`}>
             <img className='invert' src="pencil.svg" alt="pencil icon" />
           </Link>
         </button>

@@ -31,8 +31,10 @@ function Update () {
   }
 
   return (
-    <div className='w-11/12 mx-auto'>
-      <h1 className='font-bold text-center text-3xl mb-16'>Update Task</h1>
+    <div className='w-11/12 mx-auto md:w-1/2'>
+      <h1 className='font-bold text-center text-3xl mb-16 md:text-4xl md:mb-8'>
+        Update Task
+      </h1>
 
       <Formik
         initialValues={{
@@ -65,7 +67,9 @@ function Update () {
             <option value="2">February</option>
           </Field>
 
-          <button type="submit" className='bg-sky-500 py-2 px-4 rounded text-white hover:bg-sky-700'>
+          <button type="submit" 
+            className='bg-sky-500 py-2 px-4 rounded text-white hover:bg-sky-700 md:w-fit'
+          >
             Update task
           </button>
         </Form>

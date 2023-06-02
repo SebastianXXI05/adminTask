@@ -29,7 +29,7 @@ export default () => {
   }
 
   return (
-    <div className='w-11/12 mx-auto md:w-1/3'>
+    <div className='w-11/12 mx-auto md:w-1/2'>
       <h1 className='font-bold text-center text-3xl mb-16 md:text-4xl md:mb-8'>
         Create Task
       </h1>

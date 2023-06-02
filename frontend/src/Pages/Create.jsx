@@ -29,8 +29,10 @@ export default () => {
   }
 
   return (
-    <div className='w-11/12 mx-auto'>
-      <h1 className='font-bold text-center text-3xl mb-16'>Create Task</h1>
+    <div className='w-11/12 mx-auto md:w-1/3'>
+      <h1 className='font-bold text-center text-3xl mb-16 md:text-4xl md:mb-8'>
+        Create Task
+      </h1>
 
       <Formik
         initialValues={{
@@ -63,7 +65,7 @@ export default () => {
             <option value="2">February</option>
           </Field>
 
-          <button type="submit" className='bg-green-500 py-2 px-4 rounded text-white'>
+          <button type="submit" className='bg-green-500 py-2 px-4 rounded text-white md:w-fit'>
             Create task
           </button>
         </Form>

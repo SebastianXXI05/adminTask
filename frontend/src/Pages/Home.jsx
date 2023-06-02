@@ -10,10 +10,12 @@ export default function Home() {
   console.log(message)
 
   return (
-    <div className='w-11/12 mx-auto'>
-      <h1 className='font-bold text-center text-3xl mb-16'>My Tasks</h1>
+    <div className='w-11/12 mx-auto md:w-2/3'>
+      <h1 className='font-bold text-center text-3xl mb-16 md:text-4xl md:mb-8'>
+        My Tasks
+      </h1>
 
-      <div className='flex justify-center mb-2'>
+      <div className='flex justify-center mb-2 md:justify-end'>
         <Link 
           to='/create'
           className='bg-green-500 py-2 px-4 rounded text-white'

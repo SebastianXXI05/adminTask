@@ -56,4 +56,13 @@ class TaskController extends Controller
 
 		return response()->json(['success' => true, 'message' => 'A task was delete']);
 	}
+
+	// view tasks doned or not doned
+	public function view(Request $request) {
+		if ($request->done) {
+			return response()->json(['data' => Task::where('done', '=', true)->get()]);
+		}
+
+		return response()->json(['data' => Task::where('done', '=', false)->get()]);
+	}
 }

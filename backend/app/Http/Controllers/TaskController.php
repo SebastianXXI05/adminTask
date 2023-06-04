@@ -65,4 +65,12 @@ class TaskController extends Controller
 
 		return response()->json(['data' => Task::where('done', '=', false)->get()]);
 	}
+
+	// search by the task title
+	public function searchByTitle(Request $request) {
+		$title = $request->title;
+		$tasks = Task::where('title', 'LIKE', '%'.$title.'%')->get();
+
+		return response()->json(['data' => $tasks, 'num' => $tasks->count()]);
+	}
 }

@@ -29,9 +29,11 @@ class TaskController extends Controller
 
 		$task->title = $request->title;
 		$task->month = $request->month;
+		$task->description = $request->description;
+		$task->done = $request->done;
 		$task->save();
 
-		return response()->json(['success' => true, 'message' => 'A new task was create']);
+		return response()->json(['success' => true, 'message' => 'A new task was create'], 201);
 	}
 
 	public function update(Request $request, $id)

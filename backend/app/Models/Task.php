@@ -14,11 +14,15 @@ class Task extends Model
 
   protected $hidden = ['created_at', 'updated_at'];
 
+  protected $casts = [
+    'done' => 'boolean'
+  ];
+
   public static function validateData($data) {
     $validator = Validator::make($data, [
 			'title' => 'required|min:3|max:50',
 			'month' => 'required|integer',
-      'description' => 'required|nullable|min:3|max:500'
+      'description' => 'min:3|max:500'
 		]);
 
     if ($validator->fails()) {

@@ -10,14 +10,15 @@ class Task extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['title', 'month'];
+  protected $fillable = ['title', 'month', 'description', 'done'];
 
   protected $hidden = ['created_at', 'updated_at'];
 
   public static function validateData($data) {
     $validator = Validator::make($data, [
 			'title' => 'required|min:3|max:50',
-			'month' => 'required|integer'
+			'month' => 'required|integer',
+      'description' => 'required|nullable|min:3|max:500'
 		]);
 
     if ($validator->fails()) {

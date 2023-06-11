@@ -3,24 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { object, string, number } from 'yup'
 
 import MessageError from '../components/MessageError'
+import taskSchemaValidate from '../utils/taskSchemaValidate'
 
 export default () => {
   const navigate = useNavigate()
-
-  const taskSchema = object().shape({
-    title: string()
-      .min(3, 'Minimun characters 3')
-      .max(50, 'Too long')
-      .required('Required'),
-    description: string()
-      .min(3, 'Minimun characters 3')
-      .max(500, 'Too long!')
-      .nullable(),
-    month: number()
-      .min(1, 'Invalid value')
-      .max(12, 'Invalid value')
-      .required()
-  })
 
   async function handleSubmit(values) {
     const url = import.meta.env.VITE_API
@@ -40,7 +26,7 @@ export default () => {
     const res = await fetch(url, settings)
 
     if (res.ok) {
-      navigate('/', { state: { message: 'success' } })
+      navigate('/', { state: { message: 'A task was create successful' } })
     }
   }
 
@@ -57,7 +43,7 @@ export default () => {
           description: '',
           done: false
         }}
-        validationSchema={taskSchema}
+        validationSchema={taskSchemaValidate}
         onSubmit={(values) => handleSubmit(values)}
       >
 

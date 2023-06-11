@@ -37,7 +37,9 @@ export default () => {
       <Formik
         initialValues={{
           title: '',
-          month: '1'
+          month: '1',
+          description: '',
+          done: false
         }}
         
         onSubmit={(values) => handleSubmit(values)}
@@ -64,6 +66,19 @@ export default () => {
             <option value="1">January</option>
             <option value="2">February</option>
           </Field>
+
+          <label className='mb-4' htmlFor="description">Description</label>
+          <Field 
+            as="textarea"
+            name="description"
+            className='mb-8 border border-gray-400 rounded p-1 focus-visible:
+            outline-none h-36'
+          />
+
+          <label className='mb-4' htmlFor="done">
+            <Field className='mr-2' type='checkbox' name='done' />
+            Mark like done
+          </label>
 
           <button type="submit" className='bg-green-500 py-2 px-4 rounded text-white md:w-fit'>
             Create task

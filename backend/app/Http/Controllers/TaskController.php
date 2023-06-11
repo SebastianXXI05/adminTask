@@ -59,14 +59,6 @@ class TaskController extends Controller
 
 	// view tasks doned or not doned
 	public function view(Request $request) {
-		/* $request->doned = $request->doned == 1 ? true : false;
-
-		if ($request->doned) {
-			return response()->json(['data' => Task::where('done', '=', true)->get()]);
-		}
-
-		return response()->json(['data' => Task::where('done', '=', false)->get()]); */
-		// return response()->json(['data' => $request->doned]);
 		return $request->doned == 1 ? 
 			response()->json(['data' => Task::where('done', '=', true)->get()])
 			:

@@ -10,7 +10,7 @@ function Update () {
   const navigate = useNavigate() 
 
   async function handleSubmit(values) {
-    const url = `https://admintask-backend-production.up.railway.app/api/task/${task.data.id}`
+    const url = `${import.meta.env.VITE_API}${task.data.id}`
 
     const settings = {
       method: 'PUT',
@@ -79,7 +79,7 @@ function Update () {
 }
 
 export const loaderUpdate = async ({ params }) => {
-  const url = `https://admintask-backend-production.up.railway.app/api/task/${params.id}`
+  const url = `${import.meta.env.VITE_API}${params.id}`
   const res = await fetch(url)
   const task = await res.json()
 

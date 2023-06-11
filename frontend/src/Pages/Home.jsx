@@ -49,7 +49,7 @@ export default function Home() {
 }
 
 export async function loaderHome() {
-  const url = 'https://admintask-backend-production.up.railway.app/api/task'
+  const url = import.meta.env.VITE_API
   const res = await fetch(url)
   const tasks = await res.json()
 

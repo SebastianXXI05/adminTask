@@ -8,7 +8,7 @@ export default () => {
   const navigate = useNavigate() 
 
   async function handleSubmit(values) {
-    const url = 'https://admintask-backend-production.up.railway.app/api/task'
+    const url = import.meta.env.VITE_API
 
     const settings = {
       method: 'POST',

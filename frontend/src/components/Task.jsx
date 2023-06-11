@@ -4,7 +4,7 @@ export default ({ id, title }) => {
   const navigate = useNavigate()
 
   async function handleDelete() {
-    const url = 'https://admintask-backend-production.up.railway.app/api/task/'+id
+    const url = import.meta.env.VITE_API+id
 
     const res = await fetch(url, { method: 'DELETE' })
 

@@ -59,11 +59,18 @@ class TaskController extends Controller
 
 	// view tasks doned or not doned
 	public function view(Request $request) {
-		if ($request->done) {
+		/* $request->doned = $request->doned == 1 ? true : false;
+
+		if ($request->doned) {
 			return response()->json(['data' => Task::where('done', '=', true)->get()]);
 		}
 
-		return response()->json(['data' => Task::where('done', '=', false)->get()]);
+		return response()->json(['data' => Task::where('done', '=', false)->get()]); */
+		// return response()->json(['data' => $request->doned]);
+		return $request->doned == 1 ? 
+			response()->json(['data' => Task::where('done', '=', true)->get()])
+			:
+			response()->json(['data' => Task::where('done', '=', false)->get()]);
 	}
 
 	// search by the task title
@@ -71,6 +78,6 @@ class TaskController extends Controller
 		$title = $request->title;
 		$tasks = Task::where('title', 'LIKE', $title.'%')->get();
 
-		return response()->json(['data' => $tasks, 'num' => $tasks->count()]);
+		return response()->json(['data' => $tasks]);
 	}
 }

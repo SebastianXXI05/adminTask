@@ -1,6 +1,5 @@
 import { Formik, Form, Field, } from 'formik'
 import { useNavigate } from 'react-router-dom'
-import { object, string, number } from 'yup'
 
 import MessageError from '../components/MessageError'
 import taskSchemaValidate from '../utils/taskSchemaValidate'
@@ -92,6 +91,7 @@ export default () => {
               <MessageError message={errors.description} />
             ): null }
             <Field
+              placeholder="(Optional)"
               as="textarea"
               name="description"
               className='mb-4 border border-gray-400 rounded p-1 focus-visible:

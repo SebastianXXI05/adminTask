@@ -29,7 +29,7 @@ function Update () {
     const res = await fetch(url, settings)
 
     if (res.ok) {
-      navigate('/', {state: { message: 'A task was update' }})
+      navigate('/', {state: { message: 'A task was update succesful' }})
     }
     else {
       setFormError(true)

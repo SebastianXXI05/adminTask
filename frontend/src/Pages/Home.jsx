@@ -1,16 +1,31 @@
 import { useLoaderData, Link, useLocation } from 'react-router-dom'
 import Task from '../components/Task'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
   const { tasks } = useLoaderData()
   const location = useLocation()
-  const message = location.state?.message ?? 'null'
+  const message = location.state?.message
+  const [ showMessage, setShowMessage ] = useState(false)
 
-  console.log(tasks)
-  console.log(message)
+  useEffect(() => {
+    if (message !== undefined) {
+      setShowMessage(true)
+      setInterval(() => setShowMessage(false), 4000)
+    }
+  }, [])
 
   return (
     <div className='w-11/12 mx-auto md:w-2/3'>
+      {showMessage ?
+        <div 
+          className='absolute bg-sky-500 text-white py-1 px-2 rounded top-16 
+          right-2 w-2/3 opacity-70'
+        >
+        { message }
+        </div>
+        : null
+      }
       <h1 className='font-bold text-center text-3xl mb-16 md:text-4xl md:mb-8'>
         My Tasks
       </h1>

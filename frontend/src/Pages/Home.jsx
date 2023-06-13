@@ -32,7 +32,7 @@ export default function Home() {
           type="text" 
           placeholder="Search by title" />
         </div>
-        <section className='overflow-y-scroll h-72'>
+        <section className='overflow-y-auto h-72'>
           {
             tasks.data.map(task => {
               return (

@@ -33,7 +33,7 @@ export default function Home() {
       <div className='flex justify-center mb-2 md:justify-end'>
         <Link 
           to='/create'
-          className='bg-green-500 py-2 px-4 rounded text-white'
+          className='bg-green-500 py-2 px-4 rounded text-white hover:bg-green-600'
         >
           Create new task
         </Link>
@@ -52,7 +52,13 @@ export default function Home() {
             tasks.data.map(task => {
               return (
                 <article key={task.id}>
-                  <Task id={task.id} title={task.title} month={task.month} />
+                  <Task 
+                    id={task.id} 
+                    title={task.title} 
+                    month={task.month} 
+                    done={task.done} 
+                    task={task}
+                  />
                 </article>
               )
             })

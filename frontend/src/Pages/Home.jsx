@@ -46,19 +46,16 @@ export default function Home() {
 
           type="text" 
           placeholder="Search by title" />
+          <span>
+            <img src="x-lg.svg" alt="x image" />
+          </span>
         </div>
         <section className='overflow-y-auto h-72'>
           {
             tasks.data.map(task => {
               return (
                 <article key={task.id}>
-                  <Task 
-                    id={task.id} 
-                    title={task.title} 
-                    month={task.month} 
-                    done={task.done} 
-                    task={task}
-                  />
+                  <Task task={task} />
                 </article>
               )
             })

@@ -6,21 +6,23 @@ export default ({ task }) => {
   const navigate = useNavigate()
   const [ doned, setDoned ] = useState(task.done)
   const [ windowSize, setWindowSize ] = useState(innerWidth)
+  const [hidden, setHidden] = useState(false)
 
   async function handleDelete() {
     const url = import.meta.env.VITE_API+task.id
     const res = await fetch(url, { method: 'DELETE' })
 
-    if (res.ok) navigate('/')
+    if (res.ok) {
+      navigate('/')
+    }
   }
 
   window.addEventListener('resize', () => setWindowSize(innerWidth))
 
   return (
     <div 
-      to={'a'+task.id}
       className={`flex justify-between items-center border border-gray-500 rounded py-2 
-      px-4 mb-4 hover:border-sky-500 ${doned ? 'bg-gray-100' : ''}`}
+      px-4 mb-4 hover:border-sky-500 ${doned ? 'bg-gray-100' : ''} ${hidden ? 'hidden' : ''}`}
     >
       <div>
         <span className="text-gray-500 text-xs italic">
@@ -50,8 +52,7 @@ export default ({ task }) => {
         </h3>
       </div>
       <div>
-      <button 
-          onClick={handleDelete} 
+      <button  
           className={"px-4 py-2 mr-3 bg-green-500 rounded hover:bg-green-700"}
         >
           <img 
@@ -66,7 +67,10 @@ export default ({ task }) => {
           </Link>
         </button>
         <button 
-          onClick={handleDelete} 
+          onClick={() => {
+            setHidden(true)
+            handleDelete()
+          }}
           className={"px-4 py-2 bg-red-500 rounded hover:bg-red-700"}
         >
           <img className='invert' src="trash.svg" alt="trash icon" />

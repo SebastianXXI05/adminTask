@@ -3,12 +3,12 @@ import Task from '../components/Task'
 import { useState, useEffect } from 'react'
 
 export default function Home() {
-  const { fetchTasks } = useLoaderData()
+  const { tasks } = useLoaderData()
   const location = useLocation()
   const message = location.state?.message
   const [ showMessage, setShowMessage ] = useState(false)
   const [ search, setSearch ] = useState('')
-  const [ tasks, setTasks ] = useState(fetchTasks)
+  const [ foundTasks, setFoundTasks ] = useState(false)
 
   function handleSearch(title) {
     setSearch(title)
@@ -16,12 +16,11 @@ export default function Home() {
     async function searchByTitle(url) {
       const res = await fetch(url)
       const data = await res.json()
-      setTasks(data)
+      setFoundTasks(data)
     }
 
     if (title.length === 0) {
-      const url = import.meta.env.VITE_API
-      searchByTitle(url)
+      setFoundTasks(false)
     }
     else {
       const url = `${import.meta.env.VITE_API}search?title=${title}`
@@ -85,13 +84,26 @@ export default function Home() {
         </div>
         <section className='overflow-y-auto h-72'>
           {
-            tasks.data.map(task => {
-              return (
-                <article key={task.id}>
-                  <Task task={task} />
-                </article>
+            foundTasks ? 
+              (
+                foundTasks.data.map(task => {
+                  return (
+                    <article key={task.id}>
+                      <Task task={task} />
+                    </article>
+                  )
+                })
               )
-            })
+            :
+              (
+                tasks.data.map(task => {
+                  return (
+                    <article key={task.id}>
+                      <Task task={task} />
+                    </article>
+                  )
+                })
+              )
           }
         </section>
       </main>
@@ -102,7 +114,7 @@ export default function Home() {
 export async function loaderHome() {
   const url = import.meta.env.VITE_API
   const res = await fetch(url)
-  const fetchTasks = await res.json()
+  const tasks = await res.json()
 
-  return { fetchTasks }
+  return { tasks }
 }

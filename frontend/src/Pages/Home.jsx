@@ -1,6 +1,7 @@
 import { useLoaderData, Link, useLocation, json } from 'react-router-dom'
 import Task from '../components/Task'
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Home() {
   const { tasks } = useLoaderData()
@@ -38,12 +39,14 @@ export default function Home() {
   return (
     <div className='w-11/12 mx-auto md:w-2/3'>
       {showMessage ?
-        <div 
+        <motion.div 
           className='absolute bg-sky-500 text-white py-1 px-2 rounded top-16 
           right-2 w-2/3 opacity-70'
+          animate={{opacity: 0}}
+          transition={ { duration: 4.5 } }
         >
         { message }
-        </div>
+        </motion.div>
         : null
       }
       <h1 className='font-bold text-center text-3xl mb-16 md:text-4xl md:mb-8'>

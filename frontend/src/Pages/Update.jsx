@@ -7,8 +7,6 @@ import taskSchemaValidate from '../utils/taskSchemaValidate'
 function Update () {
   const {task} = useLoaderData()
 
-  console.log(task.data)
-
   const navigate = useNavigate() 
 
   async function handleSubmit(values) {

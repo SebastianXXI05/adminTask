@@ -7,7 +7,7 @@ export default ({ task }) => {
   const [ doned, setDoned ] = useState(task.done)
   const [ windowSize, setWindowSize ] = useState(innerWidth)
   const [hidden, setHidden] = useState(false)
-  console.log(doned)
+
   async function handleDelete() {
     const url = import.meta.env.VITE_API+task.id
     const res = await fetch(url, { method: 'DELETE' })

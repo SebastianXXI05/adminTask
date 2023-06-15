@@ -7,13 +7,36 @@ export default ({ task }) => {
   const [ doned, setDoned ] = useState(task.done)
   const [ windowSize, setWindowSize ] = useState(innerWidth)
   const [hidden, setHidden] = useState(false)
-
+  console.log(doned)
   async function handleDelete() {
     const url = import.meta.env.VITE_API+task.id
     const res = await fetch(url, { method: 'DELETE' })
 
     if (res.ok) {
       navigate('/')
+    }
+  }
+
+  async function handleChangeDone() {
+    const url = `${import.meta.env.VITE_API}${task.id}`
+    setDoned(!doned)
+
+    if (task.description === null) {
+      delete task.description
+    }
+
+    const settings = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...task, done: !doned })
+    }
+
+    const res = await fetch(url, settings)
+
+    if (res.ok) {
+      console.log('change')
     }
   }
 
@@ -54,11 +77,12 @@ export default ({ task }) => {
       <div className="flex">
         <button  
             className="px-4 py-2 mr-3 bg-green-500 rounded hover:bg-green-700"
+            onClick={handleChangeDone}
           >
             <img 
               className='invert' 
-              src={!doned ? 'check-lg.svg' : 'x-lg.svg'} 
-              alt={!doned ? 'check image' : 'x image'} 
+              src={doned ? 'x-lg.svg' : 'check-lg.svg'} 
+              alt={doned ? 'x image' : 'check image'} 
             />
           </button>
           <Link 

@@ -51,30 +51,31 @@ export default ({ task }) => {
           }
         </h3>
       </div>
-      <div>
-      <button  
-          className={"px-4 py-2 mr-3 bg-green-500 rounded hover:bg-green-700"}
-        >
-          <img 
-            className='invert' 
-            src={!doned ? 'check-lg.svg' : 'x-lg.svg'} 
-            alt={!doned ? 'check image' : 'x image'} 
-          />
-        </button>
-        <button className="px-4 py-2 mr-3 bg-sky-500 rounded hover:bg-sky-700">
-          <Link to={`/update/${task.id}`}>
+      <div className="flex">
+        <button  
+            className="px-4 py-2 mr-3 bg-green-500 rounded hover:bg-green-700"
+          >
+            <img 
+              className='invert' 
+              src={!doned ? 'check-lg.svg' : 'x-lg.svg'} 
+              alt={!doned ? 'check image' : 'x image'} 
+            />
+          </button>
+          <Link 
+            className="px-4 py-2 mr-3 bg-sky-500 rounded hover:bg-sky-700" 
+            to={`/update/${task.id}`}
+          >
             <img className='invert' src="pencil.svg" alt="pencil icon" />
           </Link>
-        </button>
-        <button 
-          onClick={() => {
-            setHidden(true)
-            handleDelete()
-          }}
-          className={"px-4 py-2 bg-red-500 rounded hover:bg-red-700"}
-        >
-          <img className='invert' src="trash.svg" alt="trash icon" />
-        </button>
+          <button 
+            onClick={() => {
+              setHidden(true)
+              handleDelete()
+            }}
+            className={"px-4 py-2 bg-red-500 rounded hover:bg-red-700"}
+          >
+            <img className='invert' src="trash.svg" alt="trash icon" />
+          </button>
       </div>
     </div>
   )
